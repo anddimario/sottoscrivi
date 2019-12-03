@@ -1,0 +1,14 @@
+extends layout
+
+block js
+  //-https://stackoverflow.com/questions/39574113/how-to-pass-a-node-js-variable-to-the-inside-of-a-pug-script-tag
+  script.
+    var stripePK = !{JSON.stringify(stripePK)};
+    var checkoutSessionId = !{JSON.stringify(checkoutId)};
+    var choosedPlanId = !{JSON.stringify(cart[0].plan.id)};
+  script(src="https://js.stripe.com/v3/")
+  script(src="/javascripts/payment.js")
+
+block content
+  button(id="buy-plan") Buy
+  div(id="error-message")

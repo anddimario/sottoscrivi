@@ -1,0 +1,13 @@
+extends ../layout
+
+block content
+  #userInfo
+    h3 User Info
+    ul 
+      li= plan
+      li= created
+      li #{status} - Period #{current_period_start} : #{current_period_end}
+      li= billing
+
+    a(href="/admin/customers/delete?id=" + customerId) Delete
+    a(href="/admin/customers/list") Back

@@ -1,0 +1,22 @@
+extends ../layout
+
+block content
+  p ciao #{user.email}
+
+  #userInfo
+    h3 User Info
+    if (plan)
+      ul 
+        li= plan
+        li= created
+        li #{status} - Period #{current_period_start} : #{current_period_end}
+        li= billing
+      a(href="/customer/deactive") Deactive
+    else
+      You need a plan
+
+  div.text-center
+    form(class="form-user-info" method="POST" action="/customer")
+      //-input address
+      label( for="inputAddress" class="sr-only") Address
+      input(type="address" name="address" id="inputAddress" class="form-control" placeholder="Address" required autofocus)

@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+
+    block js
+  body
+    h1
+      a(href="/")= title
+    if user
+      if user.role === "admin"
+        a(href="/admin")= __('Admin Panel')
+      else
+        a(href="/customer")= __('Profile')
+
+      a(href="/logout") Logout
+    else
+      a(href="/login") Login
+    
+    #error
+      if validationErrors
+        each error in validationErrors
+          p.text-danger= error.message
+    #message
+      if (applicationMessage)
+        p= applicationMessage
+    block content
+
+    #footer
+      a(href="/locale?lang=en") English
+      a(href="/locale?lang=it") Italiano

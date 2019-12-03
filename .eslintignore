@@ -1,0 +1,4 @@
+docs/
+coverage/
+.nyc_output/
+docsHtml/

@@ -1,0 +1,11 @@
+extends ../layout
+
+block content
+  ul
+    each customer in customers
+      li #{customer.email} 
+        a(href="/admin/customers/details?id=" + customer.id) See
+        a(href="/admin/customers/delete?id=" + customer.id) Delete
+
+    if starting_after 
+      a(href="/admin/customers/list?after=" + starting_after) More
