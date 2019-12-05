@@ -9,7 +9,6 @@ const connectMongo = promisify(db.connect);
 
 async function main () {
   try {
-
     const email = process.argv[2];
     const password = process.argv[3];
     const encryptedPassword = bcrypt.hashSync(password, 10);
@@ -19,7 +18,7 @@ async function main () {
       password: encryptedPassword,
       role: 'admin'
     };
-    await connectMongo(process.env.DATABASE_URL, process.env.DATABASE_NAME);
+    await connectMongo({ url: process.env.DATABASE_URL, dbname: process.env.DATABASE_NAME });
     await db.get().collection('users').insertOne(admin);
     process.exit();
 

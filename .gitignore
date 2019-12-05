@@ -1,3 +1,6 @@
 info
-node_modules
 .env
+
+node_modules
+cypress/videos
+cypress/screenshots

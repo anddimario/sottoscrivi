@@ -11,8 +11,8 @@ stripe.redirectToCheckout({
 });
 
 document
-  .getElementById("buy-plan")
-  .addEventListener("click", function (evt) {
+  .getElementById('buy-plan')
+  .addEventListener('click', function (evt) {
     createCheckoutSession(choosedPlanId).then(function (data) {
       // Call Stripe.js method to redirect to the new Checkout page
       stripe

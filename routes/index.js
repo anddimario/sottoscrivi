@@ -17,6 +17,7 @@ router.get('/', async (req, res) => {
 router.get('/login', (req, res) => {
   // display a message for new registered user
   const locals = {};
+  // only after registration
   if (req.query.session_id) {
     locals.applicationMessage = 'Welcome';
   }
@@ -131,7 +132,7 @@ router.post('/webhook', async (req, res) => {
       data = req.body.data;
       eventType = req.body.type;
     }
-    console.log(data, eventType, data.object.customer_email)
+    console.log(data, eventType, data.object.customer_email);
     if (eventType === 'checkout.session.completed') {
       console.log('🔔  Payment received!');
       // set user as active
@@ -146,7 +147,7 @@ router.post('/webhook', async (req, res) => {
     res.sendStatus(200);
 
   } catch (err) {
-    console.log(err)
+    console.log(err);
     res.sendStatus(500);
   }
 });

@@ -1,4 +1,14 @@
 {
-  "Admin panel": "Amministrazione",
-  "Profile": "Profilo"
+	"Admin panel": "Amministrazione",
+	"Profile": "Profilo",
+	"Update": "Aggiorna",
+	"Phone": "Telefono",
+	"Address": "Address",
+	"Postal Code": "Postal Code",
+	"Full name": "Full name",
+	"City": "City",
+	"Country": "Country",
+	"Buy": "Buy",
+	"notifyRegistration": "Benvenuto",
+	"Register": "Registrati"
 }

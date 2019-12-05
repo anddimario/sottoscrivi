@@ -1,0 +1,38 @@
+const email = 'e2e@example.com';
+const password = 'password';
+
+describe('Home Page', () => {
+  it('has the correct title', () => {
+    cy.visit('/');
+    cy.title().should('equal', 'My site');
+  });
+
+  it('change language', () => {
+    cy.contains('Italiano').click();
+    cy.contains('h1', 'Registrati');
+  });
+});
+
+/*
+// need: "chromeWebSecurity": false in cypress.json
+describe('Registration', () => {
+  it('go and register', () => {
+    cy.visit('/');
+
+    // fill out a form field
+    cy.get('input[name="email"]')
+      .type(email)
+      .get('input[name="password"]')
+      .type(password);
+
+    // simulate clicking submit
+    cy.get('#register-button')
+      .click();
+
+    //cy.get('.alert').contains('Registration successful');
+    // click (page starts reloading)
+    cy.wait(5000);
+    // check the changed content
+  });
+});
+*/

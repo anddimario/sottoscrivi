@@ -15,6 +15,12 @@ const permissions = {
   '/customer/deactive': {
     roles: ['customer']
   },
+  '/customer/update': {
+    roles: ['customer']
+  },
+  '/customer/buy': {
+    roles: ['customer']
+  },
   '/admin/customers/list': {
     roles: ['admin']
   },
@@ -30,7 +36,7 @@ module.exports = async (req) => {
   try {
     // use req.url beacuse req.route is available only on route
     // https://github.com/expressjs/express/issues/2093
-    const routePermissions = permissions[req.url];
+    const routePermissions = permissions[req.path];
     // public routes
     if (!routePermissions) {
       return;

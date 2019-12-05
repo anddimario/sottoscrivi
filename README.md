@@ -29,6 +29,9 @@ SITE_URL=http://localhost:3000
 - npm start
 - create an admin: `node scripts/createAdmin email password`
 
+### Send email registration
+- add as cron `scripts/notifyRegistration`
+
 ### Test webhook locally
 
 - npx localtunnel --port 3000

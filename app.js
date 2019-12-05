@@ -9,7 +9,7 @@ var logger = require('morgan');
 const helmet = require('helmet');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
-const i18n = require("i18n");
+const i18n = require('i18n');
 
 const db = require('./db');
 
@@ -38,7 +38,9 @@ app.set('view engine', 'pug');
 
 app.use(helmet());
 
-app.use(logger('dev'));
+if (process.env.NODE_ENV === "development") {
+  app.use(logger('dev'));
+}
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
