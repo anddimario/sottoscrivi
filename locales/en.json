@@ -2,5 +2,7 @@
 	"Admin Panel": "Admin Panel",
 	"Profile": "Profile",
 	"Phone": "Phone",
-	"notifyRegistration": "Welcome"
+	"notifyRegistration": "Welcome",
+	"Loading": "Loading",
+        "notifyResetPassword": "Password reset"
 }

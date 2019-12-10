@@ -1,21 +1,21 @@
-## Sottoscrivi
+# Sottoscrivi
 
-Basic subscription manager based on stripe
+Subscription manager based on stripe
 
-### Features
+## Features
 
-- stripe connection
-- registration and login
-- customer access 
+- registration, login and password recovery
+- customer access with plan management
 - admin panel
-- multilanguage
+- multilanguage for app and email
+- stripe checkout and connection
 
 ### Installation
 
 - create a stripe account and configure plans
 - create an `.env` file, example:
 
-```
+```bash
 NODE_ENV=development
 STRIPE_PUBLIC=
 STRIPE_SECRET=
@@ -26,11 +26,14 @@ SECRET_KEY=
 SITE_URL=http://localhost:3000
 
 ```
+
 - npm start
 - create an admin: `node scripts/createAdmin email password`
 
-### Send email registration
-- add as cron `scripts/notifyRegistration`
+### Send email cron
+
+- registration: add as cron `scripts/notifyRegistration`
+- password reset: add as cron `scripts/notifyPasswordReset`
 
 ### Test webhook locally
 

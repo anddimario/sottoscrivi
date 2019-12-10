@@ -16,6 +16,8 @@ const db = require('./db');
 const indexRouter = require('./routes/index');
 const adminRouter = require('./routes/admin');
 const customerRouter = require('./routes/customer');
+const passwordRecoveryRouter = require('./routes/passwordRecovery');
+const stripeRouter = require('./routes/stripe');
 
 const authorize = require('./middlewares/authorize');
 
@@ -38,7 +40,7 @@ app.set('view engine', 'pug');
 
 app.use(helmet());
 
-if (process.env.NODE_ENV === "development") {
+if (process.env.NODE_ENV === 'development') {
   app.use(logger('dev'));
 }
 app.use(express.json());
@@ -89,8 +91,10 @@ app.use(async (req, res, next) => {
 });
 
 app.use('/', indexRouter);
+app.use('/password-recovery', passwordRecoveryRouter);
 app.use('/admin', adminRouter);
 app.use('/customer', customerRouter);
+app.use('/stripe', stripeRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

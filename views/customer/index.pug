@@ -11,7 +11,7 @@ block content
         li= created
         li #{status} - Period #{current_period_start} : #{current_period_end}
         li= billing
-      a(href="/customer/deactive") Deactive
+      a(href="/customer/deactive" class="deactive-link") Deactive
     else
       p You need a plan
       form(class="form-buy" method="POST" action="/customer/buy")
@@ -57,25 +57,25 @@ block content
     form(class="form-user-info" method="POST" action="/customer/update")
       //-input fullname
       label( for="inputName" class="sr-only")= __("Full name")
-      input(type="name" name="name" id="inputName" class="form-control" placeholder=fullnamePlaceholder required autofocus)
+      input(type="name" name="name" id="inputName" class="form-control" placeholder=fullnamePlaceholder)
       //-input address
       label( for="inputAddress" class="sr-only")= __("Address")
-      input(type="address" name="address" id="inputAddress" class="form-control" placeholder=addressPlaceholder required autofocus)
+      input(type="address" name="address" id="inputAddress" class="form-control" placeholder=addressPlaceholder)
       //-input city
       label( for="inputCity" class="sr-only")= __("City")
-      input(type="city" name="city" id="inputCity" class="form-control" placeholder=cityPlaceholder required autofocus)
+      input(type="city" name="city" id="inputCity" class="form-control" placeholder=cityPlaceholder)
       //-input postal code
       label( for="inputPostalCode" class="sr-only")= __("Postal Code")
-      input(type="postal_code" name="postal_code" id="inputPostalCode" class="form-control" placeholder=postalCodePlaceholder required autofocus)
+      input(type="postal_code" name="postal_code" id="inputPostalCode" class="form-control" placeholder=postalCodePlaceholder)
       //-input country
       label( for="inputCountry" class="sr-only")= __("Country")
-      input(type="country" name="country" id="inputCountry" class="form-control" placeholder=countryPlaceholder required autofocus)
+      input(type="country" name="country" id="inputCountry" class="form-control" placeholder=countryPlaceholder)
       //-input phone
       label( for="inputPhone" class="sr-only")= __("Phone")
-      input(type="phone" name="phone" id="inputPhone" class="form-control" placeholder=phonePlaceholder required autofocus)
+      input(type="phone" name="phone" id="inputPhone" class="form-control" placeholder=phonePlaceholder)
 
       //-button
       - var buttonClass=['btn', 'btn-lg', 'btn-primary', 'btn-block'];
-      button(class=buttonClass type="submit")= __('Update')
+      button(class=buttonClass type="submit" id="updateInfo")= __('Update')
 
       - var pClasses=['mt-5', 'mb-3', 'text-muted'];

@@ -8,7 +8,8 @@
     "lint": "npx eslint .",
     "lint:fix": "npx eslint --fix .",
     "cypress:open": "cypress open",
-    "test": "npx start-server-and-test start http://localhost:3000 'npx cypress run'"
+    "test": "npx start-server-and-test start http://localhost:3000 'npx cypress run'",
+    "seed": "node scripts/seed.js"
   },
   "dependencies": {
     "ajv": "^6.10.2",

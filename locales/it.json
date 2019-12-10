@@ -10,5 +10,9 @@
 	"Country": "Country",
 	"Buy": "Buy",
 	"notifyRegistration": "Benvenuto",
-	"Register": "Registrati"
+	"Register": "Registrati",
+	"Loading": "Caricamento",
+	"Admin Panel": "Admin Panel",
+	"Password recovery": "Password recovery",
+        "notifyResetPassword": "Password reset"
 }

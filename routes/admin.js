@@ -36,15 +36,19 @@ router.get('/customers/details', async function (req, res, next) {
   try {
     const stripeInfo = await stripe.customers.retrieve(req.query.id);
     const subData = stripeInfo.subscriptions.data[0];
-    const locals = {
-      customerId: req.params.id,
-      billing: subData.billing,
-      created: new Date(subData.created * 1000).toISOString().slice(0, 10),
-      current_period_end: new Date(subData.current_period_end * 1000).toISOString().slice(0, 10),
-      current_period_start: new Date(subData.current_period_start * 1000).toISOString().slice(0, 10),
-      status: subData.status,
-      plan: subData.plan.name
-    };
+    let locals = {};
+    if (subData) {
+      locals = {
+        billing: subData.billing,
+        created: new Date(subData.created * 1000).toISOString().slice(0, 10),
+        current_period_end: new Date(subData.current_period_end * 1000).toISOString().slice(0, 10),
+        current_period_start: new Date(subData.current_period_start * 1000).toISOString().slice(0, 10),
+        status: subData.status,
+        plan: subData.plan.name
+      };
+    }
+    locals.customerId = req.query.id;
+
     res.render('admin/customerDetails', locals);
   } catch (err) {
     next(err);

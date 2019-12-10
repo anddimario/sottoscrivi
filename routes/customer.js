@@ -3,7 +3,6 @@ require('dotenv').config();
 var express = require('express');
 const stripe = require('stripe')(process.env.STRIPE_SECRET);
 
-const validation = require('../middlewares/validation');
 const db = require('../db');
 
 var router = express.Router();
@@ -31,7 +30,7 @@ router.get('/', async (req, res, next) => {
     if (stripeInfo.phone) {
       locals.phone = stripeInfo.phone;
     }
-    if (stripeInfo.address.line1) {
+    if (stripeInfo.address && stripeInfo.address.line1) {
       locals.address = stripeInfo.address.line1;
       locals.city = stripeInfo.address.city;
       locals.postalCode = stripeInfo.address.postal_code;
@@ -52,6 +51,13 @@ router.get('/deactive', async (req, res, next) => {
 
     // https://stripe.com/docs/api/subscriptions/cancel
     await stripe.subscriptions.del(subData.id);
+
+    // deactive user
+    await db.get().collection('users').updateOne({ email: req.sottoscrivi.user.email }, {
+      $set: {
+        active: false,
+      }
+    });
     res.redirect('/customer');
   } catch (err) {
     next(err);

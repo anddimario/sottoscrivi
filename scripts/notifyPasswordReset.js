@@ -14,16 +14,22 @@ async function main() {
   try {
     await connectMongo({ url: process.env.DATABASE_URL, dbname: process.env.DATABASE_NAME });
 
-    const users = await db.get().collection('users').find({ notifiedRegistration: { $exists: false } }, { email: 1, lang: 1 }).toArray();
+    const users = await db.get().collection('users').find({ resetPassword: { $exists: true } }, { email: 1, lang: 1, resetPassword: 1 }).toArray();
 
     for (const user of users) {
       let lang = 'en';
       if (user.lang) {
         lang = user.lang;
       }
-      await sendemail('notifyRegistration', lang, user, user);
+      if (!user.resetPassword.sent) {
+        const locals = {
+          token: user.resetPassword.token,
+          site_url: process.env.SITE_URL
+        };
+        await sendemail('notifyResetPassword', lang, user, locals);
+        await db.get().collection('users').updateOne({ email: user.email }, { $set: { 'resetPassword.sent': true } });
+      }
 
-      await db.get().collection('users').updateOne({ email: user.email }, { $set: { notifiedRegistration: true } });
     }
     process.exit();
 

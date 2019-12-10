@@ -8,11 +8,11 @@ const { promisify } = require('util');
 
 const readFile = promisify(fs.readFile);
 
-const sendemail = async (reference, lang, params) => {
+const sendemail = async (reference, lang, params, locals) => {
   const smtpParams = {
     host: process.env.SMTP_HOST,
     port: process.env.SMTP_PORT,
-    secure: process.env.SMTP_SECURE, // true for 465, false for other ports
+    secure: process.env.SMTP_SECURE === 'true', // true for 465, false for other ports, need to convert string to bool
     tls: {
       rejectUnauthorized: false
     }
@@ -32,7 +32,7 @@ const sendemail = async (reference, lang, params) => {
   const fn = pug.compileFile(`${__dirname}/../templates/${lang}/${reference}.pug`, {});
 
   // Render the function
-  const html = fn(params);
+  const html = fn(locals);
 
   // Get locales for subject
   const locales = await readFile(`${__dirname}/../locales/${lang}.json`, { encoding: 'utf8' });
